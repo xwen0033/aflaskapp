@@ -1,0 +1,49 @@
+/* Styles for the navigation bar */
+.navbar {
+    background-color: #333;
+    overflow: hidden;
+}
+.navbar a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+html {
+  font-family: sans-serif;
+  background: #eee;
+  padding: 1rem;
+}
+
+body {
+  max-width: 960px;
+  margin: auto;
+  background: white;
+  text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: serif;
+  color: #377ba8;
+  margin: 1rem 0;
+  text-align: center;
+}
+
+table {
+    margin: auto;
+    text-align: justify;
+    padding: 10px;
+}
+
+th, td {
+    text-align: justify; /* or "left", "right", "justify" */
+    vertical-align: middle;
+    padding: 10px;
+}
+
+
+
+

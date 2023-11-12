@@ -1,0 +1,20 @@
+<!-- wave_equation.html -->
+{% extends 'base.html' %}
+
+{% block title %}Wave Equation{% endblock %}
+
+{% block content %}
+    <h1>Sine Graph</h1>
+
+    <!-- User Input field -->
+    <form method="post">
+        <label for="input-a">A visualisation of the equation y = sin(ax):</label>
+        <input type="number" id="input-a" name="input-a" placeholder="1">
+        <button type="update">Update Graph</button>
+    </form>
+
+    {% if plot_div %}
+        {{ plot_div | safe }}
+    {% endif %}
+
+{% endblock %}

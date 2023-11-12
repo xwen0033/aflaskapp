@@ -1,0 +1,27 @@
+<!-- base.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/bootstrap-grid.min.css') }}">
+    <title>{% block title %}Default Title{% endblock %}</title>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a href="/">Home</a>
+        <a href="/seasonality">Seasonality</a>
+        <a href="/wave_equation">Wave Equation</a>
+        <a href="/weather">Weather</a>
+        <a href="/classification">Classification</a>
+    </div>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2023 My WebApp</p>
+    </footer>
+</body>
+</html>
