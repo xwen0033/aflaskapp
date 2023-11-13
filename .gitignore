@@ -5,3 +5,5 @@
 *.csv
 src/__pycache__/
 src/components/__pycache__/
+/.pytest_cache
+.coverage
