@@ -1,11 +1,10 @@
 from flask import Flask, render_template, request
-from src.components.word_count import analyze_folder_word_count
-from src.components.seasonality import data_preparation
+from src.components.word_count import analyze_folder_word_count, plot_word_count
+from src.components.seasonality import data_preparation, plot_weather
+from src.components.wave_equation import plot_sine_graph
 from src.components.weather import get_weather, prepare_weather
 from src.components.classification import DATA_PATH, OUTPUT_PATH
-import plotly.express as px
 from src.utils import read_csv_from_path, save_output
-import numpy as np
 
 app = Flask(__name__)
 
@@ -23,13 +22,10 @@ def index():
         data = analyze_folder_word_count(folder_path)
 
         if data:
-            fig = px.bar(data, x="File", y="Word Count", title="Word Count Analysis")
-            fig.update_xaxes(type='category')
-            plot_div = fig.to_html(full_html=False)
+            plot_div = plot_word_count(data)
+            return render_template("home.html", plot_div=plot_div, folder_path=folder_path)
 
-            return render_template("index.html", plot_div=plot_div, folder_path=folder_path)
-
-    return render_template("index.html")
+    return render_template("home.html")
 
 
 """
@@ -47,8 +43,7 @@ def seasonality():
 
         if not weather.empty:
             winter_x, winter_temp = data_preparation(weather)
-            fig = px.line(x=winter_x, y=winter_temp, title="Seasonality Analysis")
-            plot_div = fig.to_html(full_html=False)
+            plot_div = plot_weather(winter_x, winter_temp)
             return render_template("seasonality.html", plot_div=plot_div)
 
     return render_template("seasonality.html")
@@ -63,16 +58,12 @@ def seasonality():
 
 @app.route("/wave_equation", methods=["GET", "POST"])
 def wave_equation():
-    x = np.linspace(0, 20, 401)
-    fig = px.line(x=x, y=np.sin(x), title="Sine Graph")
-    plot_div = fig.to_html(full_html=False)
+    plot_div = plot_sine_graph()
     if request.method == "POST":
-        user_a = np.int64(request.form["input-a"])
-        if user_a != 1:
-            fig = px.line(x=x, y=np.sin(user_a * x), title="Sine Graph")
-            plot_div = fig.to_html(full_html=False)
-            return render_template("wave_equation.html", plot_div=plot_div)
-
+        a = request.form["user_input"]
+        if a != 1:
+            plot_div = plot_sine_graph(a)
+            return render_template("wave_equation.html", plot_div=plot_div, user_input=a)
     return render_template("wave_equation.html", plot_div=plot_div)
 
 
@@ -91,7 +82,6 @@ def weather():
         weather_data = get_weather(lat, lon)
         table = prepare_weather(weather_data)
         return render_template("weather.html", weather_data=weather_data, table=table.to_html())
-
     return render_template("weather.html")
 
 

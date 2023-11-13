@@ -1,4 +1,4 @@
-from routes import app
+from src.routes import app
 from flask_sqlalchemy import SQLAlchemy
 
 app.static_folder = 'static'

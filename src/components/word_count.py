@@ -1,4 +1,5 @@
 import os
+import plotly.express as px
 
 # Function to analyze files in a folder
 def analyze_folder_word_count(folder_path):
@@ -19,3 +20,8 @@ def analyze_folder_word_count(folder_path):
                 word_counts.append({"File": filename, "Word Count": word_count})
         return word_counts
     raise ValueError("Please enter a valid directory path")
+
+def plot_word_count(data):
+    fig = px.bar(data, x="File", y="Word Count", title="Word Count Analysis")
+    fig.update_xaxes(type='category')
+    return fig.to_html(full_html=False)
