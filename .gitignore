@@ -2,6 +2,8 @@
 /.venv
 /data
 /output
+/tests/__pycache__/
+/tests/components/__pycache__/
 *.csv
 src/__pycache__/
 src/components/__pycache__/
