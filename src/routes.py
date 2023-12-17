@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from src.components.word_count import analyze_folder_word_count, plot_word_count
-from src.components.seasonality import data_preparation, plot_weather
+from src.components.seasonality import data_preparation, plot_temp
 from src.components.wave_equation import plot_sine_graph
 from src.components.weather import get_weather, prepare_weather
 from src.components.classification import DATA_PATH, OUTPUT_PATH
@@ -43,7 +43,7 @@ def seasonality():
 
         if not weather.empty:
             winter_x, winter_temp = data_preparation(weather)
-            plot_div = plot_weather(winter_x, winter_temp)
+            plot_div = plot_temp(winter_x, winter_temp)
             return render_template("seasonality.html", plot_div=plot_div)
 
     return render_template("seasonality.html")
@@ -81,7 +81,7 @@ def weather():
         lon = request.form.get('lon')
         weather_data = get_weather(lat, lon)
         table = prepare_weather(weather_data)
-        return render_template("weather.html", weather_data=weather_data, table=table.to_html())
+        return render_template("weather.html", table=table.to_html())
     return render_template("weather.html")
 
 

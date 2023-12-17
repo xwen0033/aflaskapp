@@ -3,24 +3,24 @@
 {% block title %}Seasonality{% endblock %}
 
 {% block content %}
-    <h1>Seasonality Graph</h1>
+<h1>Seasonality Graph</h1>
 
-    <form method="post">
-        <label for="data_path">Enter the data path:</label>
-        <input type="text" id="data_path" name="data_path" value="{{ data_path }}" required>
-        <button id="upload-button" type="submit">Upload</button>
-    </form>
+<form method="post">
+    <label for="data_path">Enter the data path:</label>
+    <input type="text" id="data_path" name="data_path" value="{{ data_path }}" required>
+    <button id="upload-button" type="submit">Upload</button>
+</form>
 
-    {% if plot_div %}
-        {{ plot_div | safe }}
-    {% endif %}
+{% if plot_div %}
+{{ plot_div | safe }}
+{% endif %}
 
-    <!-- Input field for the period -->
-    <label for="period">Seasonality Period:</label>
-    <input type="number" id="period" name="period" value="12">
-    <button id="update-button">Update Graph</button>
+<!-- Input field for the period -->
+<label for="period">Seasonality Period:</label>
+<input type="number" id="period" name="period" value="12">
+<button id="update-button">Update Graph</button>
 
-    <!-- Add necessary JavaScript for updating the graph here -->
+<!-- Add necessary JavaScript for updating the graph here -->
 
 {% endblock %}
 

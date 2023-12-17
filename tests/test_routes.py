@@ -2,6 +2,7 @@ import unittest
 from src.app import app
 from unittest.mock import patch, MagicMock
 
+
 class FlaskAppTestCase(unittest.TestCase):
 
     def setUp(self):
@@ -20,8 +21,8 @@ class FlaskAppTestCase(unittest.TestCase):
         mock_analyse.return_value = "Mock Data"
         post_data = {'folder_path': 'test_folder'}
         with patch(
-            "src.routes.plot_word_count",
-            return_value='test_plot'
+                "src.routes.plot_word_count",
+                return_value='test_plot'
         ) as mock_plot:
             response = self.app.post('/', data=post_data, follow_redirects=True)
             mock_plot.assert_called_once_with("Mock Data")
@@ -39,10 +40,10 @@ class FlaskAppTestCase(unittest.TestCase):
         mock_read.return_value = mock_data
         post_data = {'data_path': 'mock.csv'}
         with patch(
-            "src.routes.data_preparation",
-            return_value=('mock data A', 'mock data B')
+                "src.routes.data_preparation",
+                return_value=('mock data A', 'mock data B')
         ) as mock_data_prep, patch(
-            "src.routes.plot_weather",
+            "src.routes.plot_temp",
             return_value='test_plot'
         ) as mock_plot:
             response = self.app.post('/seasonality', data=post_data, follow_redirects=True)

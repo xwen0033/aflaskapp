@@ -4,17 +4,17 @@
 {% block title %}Wave Equation{% endblock %}
 
 {% block content %}
-    <h1>Sine Graph</h1>
+<h1>Sine Graph</h1>
 
-    <!-- User Input field -->
-    <form method="post">
-        <label for="user_input">A visualisation of the equation y = sin(ax):</label>
-        <input type="number" id="user_input" name="user_input" value="{{ user_input }}" placeholder="1" required>
-        <button type="update">Update Graph</button>
-    </form>
+<!-- User Input field -->
+<form method="post">
+    <label for="user_input">A visualisation of the equation y = sin(ax):</label>
+    <input type="number" id="user_input" name="user_input" value="{{ user_input }}" placeholder="1" required>
+    <button type="update">Update Graph</button>
+</form>
 
-    {% if plot_div %}
-        {{ plot_div | safe }}
-    {% endif %}
+{% if plot_div %}
+{{ plot_div | safe }}
+{% endif %}
 
 {% endblock %}

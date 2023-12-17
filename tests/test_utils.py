@@ -43,13 +43,12 @@ def test_valid_csv_file():
             assert exc_info is ValueError("Please enter a valid file path and make sure the file exists")
 
 
-
 def test_save_output():
     with patch(
-        "src.utils.open"
+            "src.utils.open"
     ) as mock_open, patch(
         "src.utils.json.dump"
-    )as mock_json_dump:
+    ) as mock_json_dump:
         output = {'key': 'value'}
         path = 'path/to/mock_output.json'
         save_output(output, path)

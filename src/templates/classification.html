@@ -5,21 +5,21 @@
 
 {% block content %}
 
-    <h1>Seasons</h1>
+<h1>Seasons</h1>
 
-    {% if table %}
-        {{ table | safe }}
-    {% endif %}
+{% if table %}
+{{ table | safe }}
+{% endif %}
 
-    <h1>Classification</h1>
-    <form method="post">
-        <label for="classification">Enter the classification:</label>
-        <input type="text" id="classification" name="classification" value="{{ classification }}" required>
-        <button type="submit">Save</button>
-    </form>
+<h1>Classification</h1>
+<form method="post">
+    <label for="classification">Enter the classification:</label>
+    <input type="text" id="classification" name="classification" value="{{ classification }}" required>
+    <button type="submit">Save</button>
+</form>
 
-    {% if saved %}
-        {{ saved | safe }}
-    {% endif %}
+{% if saved %}
+{{ saved | safe }}
+{% endif %}
 
 {% endblock %}

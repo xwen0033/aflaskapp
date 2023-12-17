@@ -2,6 +2,7 @@ import os
 import pandas as pd
 import json
 
+
 def read_csv_from_path(file_path: str):
     if os.path.isfile(file_path):
         if not file_path.endswith('.csv'):
