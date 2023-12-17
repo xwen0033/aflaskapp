@@ -6,6 +6,9 @@
 /tests/components/__pycache__/
 *.csv
 src/__pycache__/
-src/components/__pycache__/
+src/plotly/pages/__pycache__/
 /.pytest_cache
 .coverage
+**/__pycache__/
+package.json
+*.DS_Store
