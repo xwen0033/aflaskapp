@@ -1,15 +1,15 @@
 import pytest
 from unittest.mock import patch
-from src.utils import read_csv_from_path, save_output
+from src.plotly.utils import read_csv_from_path, save_output
 from contextlib import ExitStack as DoesNotRaise
 
 
 def test_valid_csv_file():
     with patch(
-            "src.utils.os.path.isfile",
+            "src.plotly.utils.os.path.isfile",
             return_value=True
     ) as os_isfile_mock, patch(
-        "src.utils.pd.read_csv",
+        "src.plotly.utils.pd.read_csv",
         return_value='mock result'
     ) as pd_read_mock:
         test_file_path = 'notaCSVfile'
@@ -29,10 +29,10 @@ def test_valid_csv_file():
             assert type(exc_info.value.__cause__) is DoesNotRaise()
 
     with patch(
-            "src.utils.os.path.isfile",
+            "src.plotly.utils.os.path.isfile",
             return_value=False
     ) as not_file_mock, patch(
-        "src.utils.pd.read_csv"
+        "src.plotly.utils.pd.read_csv"
     ) as read_not_called:
         test_file_path = 'not a file'
         with pytest.raises(Exception) as exc_info:
@@ -45,9 +45,9 @@ def test_valid_csv_file():
 
 def test_save_output():
     with patch(
-            "src.utils.open"
+        "src.plotly.utils.open"
     ) as mock_open, patch(
-        "src.utils.json.dump"
+        "src.plotly.utils.json.dump"
     ) as mock_json_dump:
         output = {'key': 'value'}
         path = 'path/to/mock_output.json'

@@ -1,4 +1,4 @@
-from src.routes import app
+from src.plotly.routes import app
 from flask_sqlalchemy import SQLAlchemy
 
 app.static_folder = 'static'

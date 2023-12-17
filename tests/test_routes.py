@@ -1,5 +1,5 @@
 import unittest
-from src.app import app
+from src.plotly.app import app
 from unittest.mock import patch, MagicMock
 
 
@@ -16,12 +16,12 @@ class FlaskAppTestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         assert b'Data Analyzer' in response.data
 
-    @patch('src.routes.analyze_folder_word_count')
+    @patch('src.plotly.routes.analyze_folder_word_count')
     def test_home_endpoint_post(self, mock_analyse):
         mock_analyse.return_value = "Mock Data"
         post_data = {'folder_path': 'test_folder'}
         with patch(
-                "src.routes.plot_word_count",
+                "src.plotly.routes.plot_word_count",
                 return_value='test_plot'
         ) as mock_plot:
             response = self.app.post('/', data=post_data, follow_redirects=True)
@@ -34,16 +34,16 @@ class FlaskAppTestCase(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         assert b'Enter the data path' in response.data
 
-    @patch('src.routes.read_csv_from_path')
+    @patch('src.plotly.routes.read_csv_from_path')
     def test_seasonality_endpoint_post(self, mock_read):
         mock_data = MagicMock(empty=False)
         mock_read.return_value = mock_data
         post_data = {'data_path': 'mock.csv'}
         with patch(
-                "src.routes.data_preparation",
+                "src.plotly.routes.data_preparation",
                 return_value=('mock data A', 'mock data B')
         ) as mock_data_prep, patch(
-            "src.routes.plot_temp",
+            "src.plotly.routes.plot_temp",
             return_value='test_plot'
         ) as mock_plot:
             response = self.app.post('/seasonality', data=post_data, follow_redirects=True)

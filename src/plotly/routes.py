@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request
-from src.components.word_count import analyze_folder_word_count, plot_word_count
-from src.components.seasonality import data_preparation, plot_temp
-from src.components.wave_equation import plot_sine_graph
-from src.components.weather import get_weather, prepare_weather
-from src.components.classification import DATA_PATH, OUTPUT_PATH
-from src.utils import read_csv_from_path, save_output
+from src.plotly.pages.word_count import analyze_folder_word_count, plot_word_count
+from src.plotly.pages.seasonality import data_preparation, plot_temp
+from src.plotly.pages.wave_equation import plot_sine_graph
+from src.plotly.pages.weather import get_weather, prepare_weather
+from src.plotly.pages.classification import DATA_PATH, OUTPUT_PATH
+from src.plotly.utils import read_csv_from_path, save_output
 
 app = Flask(__name__)
 
