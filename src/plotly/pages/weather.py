@@ -1,9 +1,12 @@
+import os
 from typing import Dict
 import requests
 from flask import jsonify
 import pandas as pd
+from dotenv import load_dotenv
 
-OPENWEATHERMAP_API_KEY = 'ff9837a52fe8f9c488b6182543bf324c'
+load_dotenv()
+OPENWEATHERMAP_API_KEY = os.getenv('OPENWEATHERMAP_API_KEY')
 
 
 def kelvin_to_celsius(kelvin):
