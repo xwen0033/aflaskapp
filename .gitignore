@@ -8,3 +8,4 @@
 **/__pycache__/
 package.json
 *.DS_Store
+**/*.pyc
